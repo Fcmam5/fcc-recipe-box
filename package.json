@@ -1,0 +1,23 @@
+{
+  "name": "reacipe-box",
+  "version": "0.1.0",
+  "private": true,
+  "devDependencies": {
+    "react-app-rewired": "^1.5.2",
+    "react-scripts": "1.1.4"
+  },
+  "dependencies": {
+    "mobx": "^4.2.1",
+    "mobx-react": "^5.1.2",
+    "react": "^16.3.2",
+    "react-app-rewire-mobx": "^1.0.8",
+    "react-bootstrap": "^0.32.1",
+    "react-dom": "^16.3.2"
+  },
+  "scripts": {
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
