@@ -10,7 +10,9 @@ class RecipeItem extends Component{
   }
 
   handleEditButton = () => {
-
+    this.props.store.tempIngredients = this.props.ingredients;
+    this.props.store.tempName = this.props.name;
+    this.props.store.tempId = this.props.id;
     this.props.store.openModal();
   }
 

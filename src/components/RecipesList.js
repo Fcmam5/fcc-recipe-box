@@ -8,6 +8,9 @@ import EditionModal from './EditionModal';
 class RecipeList extends Component {
 
   handleShow = () => {
+    this.props.store.tempName = '';
+    this.props.store.tempIngredients = '';
+    this.props.store.tempId = -1;
     this.props.store.showModal = true;
   }
 

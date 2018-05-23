@@ -6,45 +6,33 @@ import {Modal, Button, FormControl, ControlLabel} from 'react-bootstrap';
 class EditionModal extends Component {
   constructor(props){
     super(props);
-    this.state = {
-      newRecipe: {
-        name: '',
-        ingredients:''
-      },
-    }
-    this.addNewRecipe = this.addNewRecipe.bind(this);
+    this.saveRecipe = this.saveRecipe.bind(this);
     this.updateName = this.updateName.bind(this);
     this.updateIngredients = this.updateIngredients.bind(this);
   }
 
-  addNewRecipe() {
-    this.props.store.addRecipe(this.state.newRecipe);
-    this.updateLocalStorage();
-    this.setState({
-      newRecipe: {
-        name: '',
-        ingredients: ''
-      }
+  saveRecipe() {
+    if (this.props.store.tempId === -1) {
+    this.props.store.addRecipe({
+      name: this.props.store.tempName,
+      ingredients: this.props.store.tempIngredients
     });
+  } else {
+    this.props.store.updateRecipe(this.props.store.tempId);
+  }
+    this.updateLocalStorage();
+    this.props.store.tempName = '';
+    this.props.store.tempIngredients = '';
+    this.props.store.tempId = -1;
     this.props.store.CloseModal();
   }
 
   updateName(event) {
-    this.setState({
-      newRecipe: {
-        name: event.target.value,
-        ingredients: this.state.newRecipe.ingredients
-      }
-    })
+    this.props.store.tempName = event.target.value;
   }
 
   updateIngredients(event) {
-    this.setState({
-      newRecipe: {
-        name: this.state.newRecipe.name,
-        ingredients: event.target.value
-      }
-    })
+    this.props.store.tempIngredients = event.target.value;
   }
 
   updateLocalStorage = () => {
@@ -67,7 +55,7 @@ class EditionModal extends Component {
               <ControlLabel>Recipie name</ControlLabel>
               <FormControl placeholder="Recipie name"
                            onChange={ this.updateName }
-                           value={this.state.newRecipe.name }/>
+                           value={this.props.store.tempName }/>
 
               <ControlLabel>
                 Ingredients
@@ -76,12 +64,12 @@ class EditionModal extends Component {
               <FormControl componentClass="textarea"
                            placeholder="ingredients seperated by ;"
                            onChange={ this.updateIngredients }
-                           value={ this.state.newRecipe.ingredients }/>
+                           value={ this.props.store.tempIngredients }/>
           </Modal.Body>
 
           <Modal.Footer>
             <Button onClick={this.handleClose }>Close</Button>
-            <Button bsStyle="primary" onClick={ this.addNewRecipe }>Save changes</Button>
+            <Button bsStyle="primary" onClick={ this.saveRecipe }>Save changes</Button>
           </Modal.Footer>
         </Modal>
       </div>

@@ -13,7 +13,10 @@ class RecipeType {
 class RecipiesStore {
   @observable recipies = [];
   @observable showModal = false;
-  
+  @observable tempName = '';
+  @observable tempIngredients = '';
+  @observable tempId = -1;
+
 
   addRecipe(recipeObject){
     this.recipies.push(new RecipeType(recipeObject));
@@ -23,8 +26,10 @@ class RecipiesStore {
     this.recipies.splice(index, 1);
   }
 
-  updateRecipe(obj, index) {
-    this.recipies[index] = new RecipeType(obj);
+  updateRecipe(index) {
+    this.recipies[index] = new RecipeType({
+                                    name: this.tempName,
+                                    ingredients: this.tempIngredients});
   }
 
   openModal(){
