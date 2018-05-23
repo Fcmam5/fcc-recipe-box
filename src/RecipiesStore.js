@@ -12,9 +12,27 @@ class RecipeType {
 
 class RecipiesStore {
   @observable recipies = [];
+  @observable showModal = false;
+  
 
   addRecipe(recipeObject){
     this.recipies.push(new RecipeType(recipeObject));
+  }
+
+  deleteRecipe(index) {
+    this.recipies.splice(index, 1);
+  }
+
+  updateRecipe(obj, index) {
+    this.recipies[index] = new RecipeType(obj);
+  }
+
+  openModal(){
+    this.showModal = true;
+  }
+
+  CloseModal(){
+    this.showModal = false;
   }
 }
 
