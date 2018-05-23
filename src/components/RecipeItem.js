@@ -6,7 +6,7 @@ import { observer } from 'mobx-react';
 class RecipeItem extends Component{
   handleDeleteButton = () => {
     this.props.store.deleteRecipe(this.props.id);
-    this.props.localStorageUpdate();
+    localStorage.setItem('_Fcmam5_recipes', JSON.stringify(this.props.store.recipies));
   }
 
   handleEditButton = () => {
@@ -20,7 +20,7 @@ class RecipeItem extends Component{
         <Panel.Heading>
           <Panel.Title toggle>{this.props.name}</Panel.Title>
         </Panel.Heading>
-        <Panel.Body collapsible>
+        <Panel.Body >
           <ul>
             { this.props.ingredients.split(';').map(ing => {
                 return <li>{ing}</li>

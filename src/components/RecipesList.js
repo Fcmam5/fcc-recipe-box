@@ -25,9 +25,9 @@ class RecipeList extends Component {
       <div className="container">
         <Row>
           <Col sm={10}>
-            <PanelGroup accordion>
+            <PanelGroup accordion id="recipies-items">
               {this.props.store.recipies.map((rec, index) => {
-                return <RecipeItem id={ index }
+                return <RecipeItem id={index}
                                    name={ rec.name }
                                    ingredients={ rec.ingredients }
                                    store={this.props.store}/>
