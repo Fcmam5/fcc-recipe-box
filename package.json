@@ -12,7 +12,7 @@
     "react": "^16.3.2",
     "react-app-rewire-mobx": "^1.0.8",
     "react-bootstrap": "^0.32.1",
-    "react-dom": "^16.3.2"
+    "react-dom": "^16.3.3"
   },
   "scripts": {
     "start": "react-app-rewired start",
